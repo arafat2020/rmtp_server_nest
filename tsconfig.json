@@ -8,6 +8,21 @@
     },
     {
       "path": "./apps/live_stream"
+    },
+    {
+      "path": "./libs/shared-zod"
+    },
+    {
+      "path": "./libs/database"
+    },
+    {
+      "path": "./libs/auth"
+    },
+    {
+      "path": "./libs/media-server"
+    },
+    {
+      "path": "./apps/media-server-app"
     }
   ]
 }

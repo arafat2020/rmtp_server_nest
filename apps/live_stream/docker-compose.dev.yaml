@@ -1,0 +1,33 @@
+services:
+  app:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    ports:
+      - "3000:3000"
+    environment:
+      - DATABASE_URL=postgres://live_stream_user:live_stream_password@db:5432/live_stream_db
+      - JWT_SECRET=dev_secret
+    depends_on:
+      db:
+        condition: service_healthy
+
+  db:
+    image: postgres:17-alpine
+    restart: always
+    environment:
+      - POSTGRES_USER=live_stream_user
+      - POSTGRES_PASSWORD=live_stream_password
+      - POSTGRES_DB=live_stream_db
+    ports:
+      - "5432:5432"
+    volumes:
+      - live_stream_dev_data:/var/lib/postgresql/data
+    healthcheck:
+      test: [ "CMD-SHELL", "pg_isready -U live_stream_user -d live_stream_db" ]
+      interval: 10s
+      timeout: 5s
+      retries: 5
+
+volumes:
+  live_stream_dev_data:

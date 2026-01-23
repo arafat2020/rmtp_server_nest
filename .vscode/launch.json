@@ -6,22 +6,34 @@
       "request": "launch",
       "name": "Debug @live-stream/live_stream with Nx",
       "runtimeExecutable": "npx",
-      "runtimeArgs": [
-        "nx",
-        "serve",
-        "@live-stream/live_stream"
-      ],
+      "runtimeArgs": ["nx", "serve", "@live-stream/live_stream"],
       "env": {
         "NODE_OPTIONS": "--inspect=9229"
       },
       "console": "integratedTerminal",
       "internalConsoleOptions": "neverOpen",
-      "skipFiles": [
-        "<node_internals>/**"
-      ],
+      "skipFiles": ["<node_internals>/**"],
       "sourceMaps": true,
       "outFiles": [
         "${workspaceFolder}/apps/live_stream/dist/**/*.(m|c|)js",
+        "!**/node_modules/**"
+      ]
+    },
+    {
+      "type": "node",
+      "request": "launch",
+      "name": "Debug media-server-app with Nx",
+      "runtimeExecutable": "npx",
+      "runtimeArgs": ["nx", "serve", "media-server-app"],
+      "env": {
+        "NODE_OPTIONS": "--inspect=9230"
+      },
+      "console": "integratedTerminal",
+      "internalConsoleOptions": "neverOpen",
+      "skipFiles": ["<node_internals>/**"],
+      "sourceMaps": true,
+      "outFiles": [
+        "${workspaceFolder}/apps/media-server-app/dist/**/*.(m|c|)js",
         "!**/node_modules/**"
       ]
     }

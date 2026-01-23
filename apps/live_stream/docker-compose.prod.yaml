@@ -1,0 +1,29 @@
+services:
+  app:
+    image: arafat2025/live_stream_app:latest
+    ports:
+      - "3000:3000"
+    environment:
+      - DATABASE_URL=postgres://live_stream_user:live_stream_password@db:5432/live_stream_db
+      - JWT_SECRET=${JWT_SECRET}
+    depends_on:
+      db:
+        condition: service_healthy
+
+  db:
+    image: postgres:17-alpine
+    restart: always
+    environment:
+      - POSTGRES_USER=live_stream_user
+      - POSTGRES_PASSWORD=live_stream_password
+      - POSTGRES_DB=live_stream_db
+    volumes:
+      - live_stream_prod_data:/var/lib/postgresql/data
+    healthcheck:
+      test: [ "CMD-SHELL", "pg_isready -U live_stream_user -d live_stream_db" ]
+      interval: 10s
+      timeout: 5s
+      retries: 5
+
+volumes:
+  live_stream_prod_data:

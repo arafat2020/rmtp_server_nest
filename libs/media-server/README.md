@@ -84,10 +84,3 @@ Note: Because chunk parsing is not implemented yet, media frames may not be proc
 
 ---
 
-## Questions or help? 🤝
-
-If you want, I can:
-- Add an example integration test using `ffmpeg` and `ffplay`.
-- Add environment-configurable RTMP port and graceful shutdown improvements.
-
-Contributions welcome — open a PR with your changes and reference this README.
